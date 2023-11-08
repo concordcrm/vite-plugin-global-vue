@@ -1,6 +1,23 @@
 {
-    "name": "vite-plugin-global-vue",
-    "type": "module",
-    "private": true,
-    "version": "1.0.0"
+  "name": "@concordcrm/vite-plugin-global-vue",
+  "type": "module",
+  "version": "1.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/concordcrm/vite-plugin-global-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/concordcrm/vite-plugin-global-vue/issues"
+  },
+  "homepage": "https://github.com/concordcrm/vite-plugin-global-vue#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "description": ""
 }

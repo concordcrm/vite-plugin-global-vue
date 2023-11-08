@@ -1,17 +1,16 @@
 // https://github.com/vitejs/vite/issues/544
-// Extracted from https://unpkg.com/vue@3.3.8/dist/vue.esm-browser.js
 
 import fs from 'fs'
 
 export default function AppVue(version) {
-  // We will use the dev vue url from a CDN to extract all the export names
+  // We will use the dev Vue url from a CDN to extract all the export names
   // and provide them as ESM module export from the global Vue instance.
   // The main app file uses the same CDN as well.
   const devVueUrl = `https://unpkg.com/vue@${version}/dist/vue.global.js`
   const vueAliasTmpFilePath = `./.app-vue.js`
 
   return {
-    name: 'vite-plugin-app-vue',
+    name: 'vite-plugin-global-vue',
 
     config: () => ({
       resolve: {
