@@ -7,7 +7,7 @@ export default function AppVue(version) {
   // and provide them as ESM module export from the global Vue instance.
   // The main app file uses the same CDN as well.
   const devVueUrl = `https://unpkg.com/vue@${version}/dist/vue.global.js`
-  const vueAliasTmpFilePath = `./.app-vue.js`
+  const vueAliasTmpFilePath = `./.vueAlias.js`
 
   return {
     name: 'vite-plugin-global-vue',
