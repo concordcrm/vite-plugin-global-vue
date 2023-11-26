@@ -7,7 +7,9 @@ export default function AppVue(version) {
   // and provide them as ESM module export from the global Vue instance.
   // The main app file uses the same CDN as well.
   const devVueUrl = `https://unpkg.com/vue@${version}/dist/vue.global.js`
-  const vueAliasTmpFilePath = `./.vueAlias.js`
+
+  const vueAliasTmpFilePath = `./.vue.alias.js`
+  const exportMatchRegex = /exports\.(\w+)/gm
 
   return {
     name: 'vite-plugin-global-vue',
@@ -21,14 +23,13 @@ export default function AppVue(version) {
     async buildStart() {
       const src = await (await fetch(devVueUrl)).text()
 
-      const regex = /exports\.(\w+)/gm
       const uniqueExports = new Set()
 
       let content = ''
 
       let match
 
-      while ((match = regex.exec(src)) !== null) {
+      while ((match = exportMatchRegex.exec(src)) !== null) {
         uniqueExports.add(match[1])
       }
 

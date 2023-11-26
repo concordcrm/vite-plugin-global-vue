@@ -1,7 +1,7 @@
 {
   "name": "@concordcrm/vite-plugin-global-vue",
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,6 +18,9 @@
   "homepage": "https://github.com/concordcrm/vite-plugin-global-vue#readme",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
+  },
+  "peerDependencies": {
+    "vite": "^4.0.0"
   },
   "description": ""
 }
