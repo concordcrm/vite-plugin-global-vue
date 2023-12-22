@@ -7,18 +7,28 @@ export default function AppVue(version) {
   // and provide them as ESM module export from the global Vue instance.
   // The main app file uses the same CDN as well.
   const devVueUrl = `https://unpkg.com/vue@${version}/dist/vue.global.js`
-
-  const vueAliasTmpFilePath = `./.vue.alias.js`
   const exportMatchRegex = /exports\.(\w+)/gm
+
+  const vueAliasTmpFileName = `.vue.alias.js`
+  let vueAliasTmpPath = null
 
   return {
     name: 'vite-plugin-global-vue',
 
     config: () => ({
       resolve: {
-        alias: [{ find: 'vue', replacement: vueAliasTmpFilePath }],
+        alias: [
+          {
+            find: 'vue',
+            customResolver: () => vueAliasTmpPath,
+          },
+        ],
       },
     }),
+
+    configResolved(resolvedConfig) {
+      vueAliasTmpPath = `${resolvedConfig.root}/${vueAliasTmpFileName}`
+    },
 
     async buildStart() {
       const src = await (await fetch(devVueUrl)).text()
@@ -26,7 +36,6 @@ export default function AppVue(version) {
       const uniqueExports = new Set()
 
       let content = ''
-
       let match
 
       while ((match = exportMatchRegex.exec(src)) !== null) {
@@ -37,11 +46,11 @@ export default function AppVue(version) {
         content += `export const ${name} = Vue.${name};\n`
       })
 
-      fs.writeFileSync(vueAliasTmpFilePath, content)
+      fs.writeFileSync(vueAliasTmpPath, content)
     },
 
     buildEnd() {
-      fs.unlinkSync(vueAliasTmpFilePath)
+      fs.unlinkSync(vueAliasTmpPath)
     },
   }
 }
