@@ -2,6 +2,9 @@
 
 import fs from 'fs'
 
+export const versionMatchRegex =
+  /'vue_version'\s*=>\s*'((\d+)\.(\d+)\.(\d+)(?:-([\da-zA-Z-]+(?:\.[\da-zA-Z-]+)*))?(?:\+([\da-zA-Z-]+(?:\.[\da-zA-Z-]+)*))?)'/
+
 export default function AppVue(version) {
   // We will use the dev Vue url from a CDN to extract all the export names
   // and provide them as ESM module export from the global Vue instance.
