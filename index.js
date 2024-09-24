@@ -2,9 +2,10 @@
 
 import fs from 'fs'
 
+const exportMatchRegex = /exports\.(\w+)/gm
+const vueAliasTmpFileName = `.vue.alias.js`
+
 export default function AppVue(config) {
-  const exportMatchRegex = /exports\.(\w+)/gm
-  const vueAliasTmpFileName = `.vue.alias.js`
   let vueAliasTmpPath = ''
 
   let version = ''
